@@ -17,14 +17,14 @@
       mode: '0777'
 
   - name: Exportar shared directory
-    ansoble.builtin.lineinfile:
+    ansible.builtin.lineinfile:
       path: /etc/exports
       line: "/srv/nfs/shared   192.168.10.0/24(rw)"
       state: present
 
   - name: Service NFS is started
     ansible.builtin.systemd_service:
-      name: mfs-server
+      name: nfs-server
       state: started
       enabled: true
 
@@ -34,4 +34,12 @@
       state: enabled
       permanent: true
       immediate: true
+
+  - name: Copy test file to server
+    ansible.builtin.template:
+      src: ../templates/README-NFS.j2
+      dest: /srv/nfs/shared/README-NFS.txt
+      owner: nobody
+      mode: u=r,g=r,o=r
+
 
