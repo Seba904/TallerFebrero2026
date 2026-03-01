@@ -1,0 +1,14 @@
+# Archivos temporales
+*.swp
+*.tmp
+*.bak
+
+# Archivos de logs
+*.log
+
+# Archivos de ansible
+*.retry
+
+# Archivos de Python
+--pycache--/
+*.pyc

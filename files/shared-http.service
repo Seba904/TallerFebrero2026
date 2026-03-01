@@ -1,0 +1,15 @@
+[Unit]
+Description=Python HTTP Server for /mnt/shared
+After=network.target autofs.service
+
+[Service]
+Type=simple
+User=sysadmin
+Group=sysadmin
+WorkingDirectory=/mnt/shared
+ExecStart=/usr/bin/python3 -m http.server 8080 --directory /mnt/shared
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target

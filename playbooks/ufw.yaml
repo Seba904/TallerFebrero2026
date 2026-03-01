@@ -1,0 +1,27 @@
+---
+- hosts: ubuntu
+  become: true 
+
+  tasks:
+
+  - name: Set default policy - deny entry
+    community.general.ufw:
+      state: enabled
+      direction: in
+      policy: deny
+
+  - name: Set default policy - allow exit
+    community.general.ufw:
+      state: enabled
+      direction: out
+      policy: allow
+
+  - name: Allow OpenSSH
+    community.general.ufw:
+      rule: allow
+      name: OpenSSH
+
+  - name: Enable ufw and reboot
+    community.general.ufw:
+      state: enabled
+      logging: on
