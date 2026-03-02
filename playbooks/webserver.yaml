@@ -28,7 +28,7 @@
 
   handlers:
 
-  - name: Restart webserver service
+  - name: Restart webserver
     ansible.builtin.systemd:
       name: shared-http
       state: restarted
